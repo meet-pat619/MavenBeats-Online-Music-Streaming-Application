@@ -1,0 +1,59 @@
+﻿@model DemoMusicMVC.ViewModel.SongViewModel
+
+@{
+    ViewData["Title"] = "Upload";
+}
+
+<h1>Upload Your Song</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="songName" class="control-label"></label>
+                <input asp-for="songName" class="form-control" />
+                <span asp-validation-for="songName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="photo" class="col-form-label"></label><br />
+                <div class="custom-file">
+                    <input asp-for="photo" style="cursor: pointer" class="photo custom-file-input" />
+                    <label class="custom-file-label">Choose File...</label>
+                </div>
+                <span asp-validation-for="photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="song" class="col-form-label"></label><br />
+                <div class="custom-file">
+                    <input asp-for="song" style="cursor: pointer" class="song custom-file-input" />
+                    <label class="custom-file-label">Choose File...</label>
+                </div>
+                <span asp-validation-for="song" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $('.photo').change(function () {
+                var filename = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(filename);
+            })
+            $('.song').change(function () {
+                var filename = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(filename);
+            })
+        });
+    </script>
+}

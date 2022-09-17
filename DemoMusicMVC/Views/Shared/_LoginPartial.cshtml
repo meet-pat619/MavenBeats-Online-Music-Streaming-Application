@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<ul class="navbar-nav smooth-scroll">
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-controller="Songs" asp-action="Index">Home</a>
+    </li>
+    @if (User.IsInRole("Customer") && !User.IsInRole("PremiumCustomer"))
+    {
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Songs" asp-action="Convert">Register As A Premium User</a>
+    </li>
+    }
+</ul>
+<ul class="navbar-nav smooth-scroll ml-auto">
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome @User.Identity.Name!</a>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </li>
+</ul>
+}
+else
+{
+    <ul class="navbar-nav smooth-scroll">
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#best-features">Features</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#examples">Genres</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav smooth-scroll ml-auto">
+        <li class="nav-item ml-auto">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    </ul>
+}

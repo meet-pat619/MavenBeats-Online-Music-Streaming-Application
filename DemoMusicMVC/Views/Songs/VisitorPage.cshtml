@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DemoMusicMVC.Models.Song>
+
+@{
+    ViewData["Title"] = "Songs";
+}
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var item in Model)
+    {
+        <div class="col mb-4">
+            @*<div class="row row-cols-1 row-cols-md-4">
+                    <div class="col mb-4">
+                        <div class="card h-100 w-25">
+                            <img src="" height="200" width="100" class="card-img-top" alt="No Image">
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="card h-100" style="max-width: 20rem;">
+                <div class="view overlay">
+                    <img class="card-img-top" src="https://localhost:44392/app-images/@item.photoPath"
+                         alt="Card image cap">
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">@item.songName</h4>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.songId">Play</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

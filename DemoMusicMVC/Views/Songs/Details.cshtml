@@ -1,0 +1,43 @@
+﻿@model DemoMusicMVC.Models.Song
+
+@{
+    ViewData["Title"] = "Music Player";
+}
+
+<h1 class="text-center">@Html.DisplayFor(model => model.songName)</h1>
+
+@*<div>
+    <hr />
+    <div class="card bg-dark text-white w-50">
+        <img src="" class="card-img" alt="Not Displayed">
+        <div class="card-img-overlay">
+            <h5 class="card-title"></h5>
+
+        </div>
+        <div class="card-footer">
+            
+        </div>
+    </div>
+
+</div>*@
+
+<div class="card mx-auto" style="max-width: 21.25rem; background-color:#f1f3f4">
+    <div class="view overlay">
+        <img class="card-img-top" src="https://localhost:44392/app-images/@Model.photoPath"
+             alt="Card image cap">
+        <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">@Html.DisplayFor(model => model.songName)</h4>
+        <div class="justify-content-center">
+            <audio class="embed-responsive-item" preload="none" controls style="outline: none;">
+                <source src="https://localhost:44392/app-songs/@Model.songPath">
+                Sorry, Your Browser does not support This File.
+            </audio>
+        </div>
+        <a asp-action="Edit" asp-route-id="@Model.songId" class="card-link">Edit</a>
+        <a asp-action="Index" class="card-link">Back to List</a>
+    </div>
+</div>
