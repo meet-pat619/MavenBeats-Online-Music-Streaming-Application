@@ -28,5 +28,3 @@ Run the project following any changes if made.
 ### Authors
 
 - [Meet Patel](https://github.com/meet-pat619)
-
-Please Refer to Project Implementation for more details: https://www.youtube.com/watch?v=eklj7wyXNcg
